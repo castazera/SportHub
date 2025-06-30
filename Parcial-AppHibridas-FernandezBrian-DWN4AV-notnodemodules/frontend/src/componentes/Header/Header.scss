@@ -1,0 +1,184 @@
+.header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #06b6d4;
+
+  .contenedor-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      padding: 1rem;
+      gap: 1rem;
+    }
+  }
+
+  .logo {
+    .logo-enlace {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #06b6d4;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: #0891b2;
+        transform: scale(1.05);
+      }
+
+      .logo-icono {
+        font-size: 1.8rem;
+      }
+
+      .logo-texto {
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 1.25rem;
+        
+        .logo-icono {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  .navegacion {
+    .nav-lista {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 0.5rem;
+      align-items: center;
+
+      @media (max-width: 768px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.25rem;
+      }
+
+      .nav-item {
+        margin: 0;
+
+        .nav-enlace {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1rem;
+          color: #e2e8f0;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          position: relative;
+          border: 2px solid transparent;
+          cursor: pointer;
+
+          &:hover {
+            background: rgba(6, 182, 212, 0.1);
+            color: #06b6d4;
+            border-color: rgba(6, 182, 212, 0.3);
+            transform: translateY(-2px);
+          }
+
+          &.activo {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(8, 145, 178, 0.2));
+            color: #06b6d4;
+            border-color: #06b6d4;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: -2px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 6px;
+              height: 6px;
+              background: #06b6d4;
+              border-radius: 50%;
+            }
+          }
+
+          @media (max-width: 768px) {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+          }
+        }
+
+        &.usuario-info {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-left: 1rem;
+          padding: 0.5rem 1rem;
+          background: rgba(6, 182, 212, 0.1);
+          border-radius: 8px;
+          border: 1px solid rgba(6, 182, 212, 0.3);
+
+          @media (max-width: 768px) {
+            margin-left: 0;
+            margin-top: 0.5rem;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+          }
+
+          .usuario-saludo {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+
+            strong {
+              color: #06b6d4;
+              font-weight: 600;
+            }
+
+            @media (max-width: 768px) {
+              text-align: center;
+            }
+          }
+
+          .btn-cerrar-sesion {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: 2px solid #ef4444;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background: linear-gradient(135deg, #dc2626, #b91c1c);
+              transform: translateY(-2px);
+              box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+            }
+
+            @media (max-width: 768px) {
+              width: 100%;
+              padding: 0.6rem 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+} 

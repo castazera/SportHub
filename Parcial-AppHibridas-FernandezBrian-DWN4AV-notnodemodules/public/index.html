@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css">
+  <title>API de Entrenamientos eSports</title>
+</head>
+<body>
+  <h1>Bienvenido a la API de Entrenamientos para Jugadores de eSports</h1>
+  <p>Esta API permite registrar y consultar sesiones de entrenamiento realizadas por jugadores de eSports, incluyendo duración, tipo de práctica y rendimiento.</p>
+  
+  <h2> <strong>Endpoints principales</strong></h2>
+  <ul>
+        <!-- Busca todos los jugadores -->  
+        <li class="endpoint">
+          <p> <strong>Permite buscar todos los jugadores.</strong></p>
+          <a href="/api/jugadores" target="_blank">GET /api/jugadores</a>
+        </li>
+
+        <!-- Busca todos los entrenamientos -->
+        <li class="endpoint">
+          <p> <strong>Permite buscar todos los entrenamientos.</strong></p>
+          <a href="/api/entrenamientos" target="_blank">GET /api/entrenamientos</a>
+        </li>
+
+        <!-- Busca un jugador por nombre -->
+        <li class="endpoint">
+          <p> <strong>Permite buscar a un jugador por su nombre.</strong></p>
+          <a href="/api/jugadores/nombre/:nombre" target="_blank">GET /api/jugadores/nombre/:nombre</a>
+        </li>
+
+        <!-- Actualizar un jugador por su ID  -->
+        <li class="endpoint">
+          <p> <strong>Permite actualizar un jugador por su ID.</strong></p>
+          <a href="/api/jugadores/:id" target="_blank">PUT /api/jugadores/:id</a>
+        </li>
+    
+        <!-- Actualizar un entrenamiento por su ID -->  
+        <li class="endpoint">
+          <p> <strong>Permite actualizar un entrenamiento por su ID.</strong></p>
+          <a href="/api/entrenamientos/:id" target="_blank">PUT /api/entrenamientos/:id</a>
+        </li>
+        
+    
+        <!-- Elimina un jugador por su ID -->
+        <li class="endpoint">
+          <p> <strong>Permite eliminar un jugador por su ID.</strong></p>
+          <a href="/api/jugadores/:id" target="_blank">DELETE /api/jugadores/:id</a>
+        </li>
+    
+        <!-- Elimina un entrenamiento por su ID -->
+        <li class="endpoint">
+          <p> <strong>Permite eliminar un entrenamiento por su ID.</strong></p>
+          <a href="/api/entrenamientos/:id" target="_blank">DELETE /api/entrenamientos/:id</a>
+        </li>
+
+    <h2><strong>Metodos de filtrado</strong></h2>
+
+    <!-- Busca un jugador por ID -->
+    <li class="endpoint">
+      <p> <strong>Permite buscar un jugador por su ID.</strong></p>
+      <a href="/api/jugadores/:id" target="_blank">GET /api/jugadores/:id</a>
+    </li> 
+
+    <!-- Busca un jugador por nickname -->
+    <li class="endpoint">
+      <p> <strong>Permite buscar un jugador por nickname.</strong></p>
+      <a href="/api/jugadores/nickname/:nickname" target="_blank">GET /api/jugadores/nickname/:nickname</a>
+    </li>
+
+    <!-- Busca los entrenamientos de un tipo -->
+    <li class="endpoint">
+      <p> <strong>Permite buscar los entrenamientos de un tipo.</strong></p>
+      <a href="/api/entrenamientos/tipo/:tipo" target="_blank">GET /api/entrenamientos/tipo/:tipo</a>
+    </li>
+    
+    <!-- Busca los entrenamientos por ID   -->
+    <li class="endpoint">
+      <p> <strong>Permite buscar los entrenamientos por ID.</strong></p>
+      <a href="/api/entrenamientos/:id" target="_blank">GET /api/entrenamientos/:id</a>
+    </li>
+
+  </ul>
+
+  <h2><strong>Metodos de ordenamiento</strong></h2>
+  <ul>
+    <li class="endpoint">
+      <p> <strong>Permite ordenar los jugadores por nombre alfabeticamente.</strong></p>
+      <a href="/api/jugadores?order=asc" target="_blank">GET /api/jugadores?order=asc</a>
+    </li>
+
+    <li class="endpoint">
+      <p> <strong>Permite ordenar los entrenamientos por tipo alfabeticamente.</strong></p>
+      <a href="/api/entrenamientos?order=asc" target="_blank">GET /api/entrenamientos?order=asc</a>
+    </li>
+
+  </ul>
+
+  <h2><strong>Metodos de paginado</strong></h2>
+  <ul>
+    <li class="endpoint">
+      <p> <strong>Permite ver la primera pagina de 5 jugadores </strong></p>
+      <a href="/api/jugadores?page=1&limit=5" target="_blank">GET /api/jugadores?page=1&limit=5</a>
+    </li>
+
+    <li class="endpoint">
+      <p> <strong>Permite ver la primera pagina de jugadores llamados "Juan" (Por ejemplo).</strong></p>
+      <a href="/api/jugadores?nombre=Juan&page=1&limit=3" target="_blank">GET /api/jugadores?nombre=Juan&page=1&limit=3</a>
+    </li>
+
+  </ul>
+
+
+
+  <h3>Buscar jugador y sus entrenamientos</h3>
+
+  <form id="buscar-jugador-entrenamiento">
+    <input type="text" id="nickname_jugador" placeholder="Ingresa el nickname del jugador" required>
+    <button type="submit">Buscar jugador y sus entrenamientos</button>
+  </form>
+  <div id="resultados-jugador"></div>  
+
+  <h2><strong>Ejemplos de uso con curl</strong></h2>
+
+  <h3>Crear un jugador</h3>
+  <pre><code>curl -X POST /api/jugadores 
+    -H "Content-Type: application/json" 
+    -d '{
+    "nombre": "Juan",
+    "nickname": "ProGamer",
+    "edad": 22,
+    "juego": "Valorant",
+    "nivel": "pro",
+    "email": "juan@email.com"
+  }'</code></pre>
+
+
+  <h3>Crear un entrenamiento</h3>
+  <pre><code>curl -X POST /api/entrenamientos 
+    -H "Content-Type: application/json" 
+    -d '{
+    "jugador_id": "664266426642664266426642",
+    "duracion": 60,
+    "tipo": "Individual",
+    "objetivo": "Aprender a usar el personaje",
+    "metricas": {
+      "kda": 1.5,
+      "winRate": 70,
+      "tiempoReaccion": 150,
+      "precision": 85
+    },
+    "notas": "Notas del entrenamiento",
+    "estado": "Programado"
+  }'</code></pre>
+
+  <h3>Consultar un jugador por ID</h3>
+  <pre><code>curl /api/jugadores/6828d0a2c115c6f0e3068b9c</code></pre>
+
+  <h3>Consultar un entrenamiento por ID</h3>
+  <pre><code>curl /api/entrenamientos/6828d3f9a51bcf72a1255a76</code></pre>
+
+  <footer>
+    <hr />
+    <p>Nombre: Fernandez, Brian Gabriel</p>
+    <p>Materia: Aplicaciones Hibridas</p>
+    <p>Docente: MARCOS GALBÁN, Camila Belén</p>
+    <p>Comisión: DWN4AV</p>
+  </footer>
+
+  <script>
+    document.getElementById('buscar-jugador-entrenamiento').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nickname = document.getElementById('nickname_jugador').value;
+      const resultados = document.getElementById('resultados-jugador');
+      try {
+        const respuesta = await fetch(`/api/jugadores/nickname/${nickname}`);
+        const datos = await respuesta.json();
+        const respuestaEntrenamientos = await fetch(`/api/entrenamientos/jugador/${nickname}`);
+        const datosEntrenamientos = await respuestaEntrenamientos.json();
+        if (respuesta.ok && respuestaEntrenamientos.ok && datosEntrenamientos.length > 0) {
+          resultados.innerHTML = `<h3>Jugador encontrado:</h3><pre>${JSON.stringify(datos, null, 2)}</pre>
+          <h3>Entrenamientos de ${nickname}:</h3><pre>${JSON.stringify(datosEntrenamientos, null, 2)}</pre>`; 
+
+        } else {
+          resultados.innerHTML = `<p style="color: red;">${datos.mensaje}</p>`;
+        }
+      } catch (err) {
+        resultados.innerHTML = `<p style="color: red;">Error al buscar jugador: ${err.message} </p>`;
+      }
+    });
+  </script>
+
+</body>
+</html>

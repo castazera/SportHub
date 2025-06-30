@@ -1,0 +1,39 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenido-principal {
+  flex: 1;
+  padding: 2rem 0;
+  
+  .contenedor {
+    min-height: calc(100vh - 200px);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .contenido-principal {
+    padding: 1rem 0;
+  }
+  
+  .contenedor {
+    padding: 0 0.5rem;
+  }
+} 
